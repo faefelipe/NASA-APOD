@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		20C55B522E7B958F00C9C20A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 20C55B512E7B958F00C9C20A /* Kingfisher */; };
+		20C55B862E7C84D000C9C20A /* Keys.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 20C55B852E7C84D000C9C20A /* Keys.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		20C55B382E7B929000C9C20A /* NASA-APOD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NASA-APOD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		20C55B852E7C84D000C9C20A /* Keys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Keys.xcconfig; sourceTree = "<group>"; };
 		20C55BC32E7C972000C9C20A /* NASA-APODTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NASA-APODTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -73,6 +75,7 @@
 		20C55B2F2E7B929000C9C20A = {
 			isa = PBXGroup;
 			children = (
+				20C55B852E7C84D000C9C20A /* Keys.xcconfig */,
 				20C55B3A2E7B929000C9C20A /* NASA-APOD */,
 				20C55BC42E7C972000C9C20A /* NASA-APODTests */,
 				20C55B392E7B929000C9C20A /* Products */,
@@ -184,6 +187,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20C55B862E7C84D000C9C20A /* Keys.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,8 +228,7 @@
 /* Begin XCBuildConfiguration section */
 		20C55B4C2E7B929100C9C20A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReferenceAnchor = 20C55B3A2E7B929000C9C20A /* NASA-APOD */;
-			baseConfigurationReferenceRelativePath = Keys.xcconfig;
+			baseConfigurationReference = 20C55B852E7C84D000C9C20A /* Keys.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -253,8 +256,7 @@
 		};
 		20C55B4D2E7B929100C9C20A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReferenceAnchor = 20C55B3A2E7B929000C9C20A /* NASA-APOD */;
-			baseConfigurationReferenceRelativePath = Keys.xcconfig;
+			baseConfigurationReference = 20C55B852E7C84D000C9C20A /* Keys.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -282,8 +284,7 @@
 		};
 		20C55B4E2E7B929100C9C20A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReferenceAnchor = 20C55B3A2E7B929000C9C20A /* NASA-APOD */;
-			baseConfigurationReferenceRelativePath = Keys.xcconfig;
+			baseConfigurationReference = 20C55B852E7C84D000C9C20A /* Keys.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -348,8 +349,7 @@
 		};
 		20C55B4F2E7B929100C9C20A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReferenceAnchor = 20C55B3A2E7B929000C9C20A /* NASA-APOD */;
-			baseConfigurationReferenceRelativePath = Keys.xcconfig;
+			baseConfigurationReference = 20C55B852E7C84D000C9C20A /* Keys.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
