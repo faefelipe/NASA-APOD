@@ -4,7 +4,6 @@
 //
 //  Created by Felipe Almeida on 18/09/25.
 //
-
 import Foundation
 
 @MainActor
@@ -12,11 +11,12 @@ class APODListViewModel {
     
     enum State: Equatable {
         case loading
-        case success
+        case success(featured: APOD, recents: [APOD])
         case error(String)
     }
     
     private let apiService: APIService
+    
     private(set) var featuredAPOD: APOD?
     private(set) var previousAPOD: APOD?
     private(set) var nextAPOD: APOD?
@@ -65,8 +65,9 @@ class APODListViewModel {
                     self.recentAPODs = recents.filter { $0.date != featured.date }
                 }
                 
-                self.state = .success
-                onStateUpdate?(.success)
+                let successState = State.success(featured: featured, recents: self.recentAPODs)
+                self.state = successState
+                onStateUpdate?(successState)
                 
             } catch {
                 let errorMessage = (error as? NetworkError)?.userFriendlyMessage ?? "title.unknown.error".localized
@@ -120,8 +121,9 @@ class APODListViewModel {
                 self.previousAPOD = previous
                 self.nextAPOD = next
                 
-                self.state = .success
-                onStateUpdate?(.success)
+                let successState = State.success(featured: featured, recents: self.recentAPODs)
+                self.state = successState
+                onStateUpdate?(successState)
                 
             } catch {
                 let errorMessage = (error as? NetworkError)?.userFriendlyMessage ?? "title.unknown.error".localized
