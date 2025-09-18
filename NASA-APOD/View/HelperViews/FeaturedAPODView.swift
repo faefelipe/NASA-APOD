@@ -42,8 +42,7 @@ class FeaturedAPODView: UIView {
         descriptionLabel.font = .preferredFont(forTextStyle: .subheadline)
         descriptionLabel.textColor = .secondaryLabel
         descriptionLabel.numberOfLines = 3
-        
-        // --- Layout com StackViews ---
+
         let textStackView = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel])
         textStackView.axis = .vertical
         textStackView.spacing = 8
@@ -91,7 +90,6 @@ class FeaturedAPODView: UIView {
             previousPod.isHidden = true
         }
         
-        // Configura o pod do próximo dia
         if let nextAPOD = next {
             nextPod.configure(with: nextAPOD)
             nextPod.isHidden = false
@@ -111,7 +109,6 @@ class FeaturedAPODView: UIView {
     }
 }
 
-// MARK: - NavigationPodView
 private class NavigationPodView: UIView {
     enum Direction { case previous, next }
     
