@@ -13,10 +13,9 @@ class FavoritesViewController: UIViewController {
     
     private let viewModel: FavoritesViewModel
     private var cancellables = Set<AnyCancellable>()
-    private let tableView = UITableView(frame: .zero, style: .insetGrouped)
+    private let tableView = UITableView(frame: .zero, style: .plain)
     private let activityIndicator = UIActivityIndicatorView(style: .large)
     private let infoLabel = UILabel()
-    private var apods: [APOD] = []
 
     init(viewModel: FavoritesViewModel) {
         self.viewModel = viewModel
@@ -28,7 +27,7 @@ class FavoritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "title.favorites".localized
-        self.tabBarItem.title = "title.favorites".localized
+        
         setupUI()
         bindViewModel()
     }
@@ -53,7 +52,7 @@ class FavoritesViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(APODTableViewCell.self, forCellReuseIdentifier: APODTableViewCell.reuseIdentifier)
-        tableView.rowHeight = 100
+        tableView.rowHeight = 110
         tableView.separatorStyle = .none
         
         activityIndicator.color = ColorManager.primaryText
@@ -75,8 +74,10 @@ class FavoritesViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
             infoLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             infoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             infoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
@@ -84,80 +85,67 @@ class FavoritesViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        viewModel.$state
+        viewModel.$favoriteAPODs
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] state in
-                self?.updateUI(for: state)
+            .sink { [weak self] _ in
+                self?.tableView.reloadData()
+                self?.updateVisibility()
+            }
+            .store(in: &cancellables)
+        
+        viewModel.$isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.updateVisibility()
             }
             .store(in: &cancellables)
     }
     
-    private func updateUI(for state: FavoritesViewModel.State) {
-        activityIndicator.stopAnimating()
-
-        switch state {
-        case .loading:
+    private func updateVisibility() {
+        if viewModel.isLoading {
             activityIndicator.startAnimating()
             tableView.isHidden = true
             infoLabel.isHidden = true
-        case .success(let apods):
-            self.apods = apods
-            tableView.isHidden = false
-            infoLabel.isHidden = true
-            tableView.reloadData()
-        case .empty:
-            self.apods = []
-            tableView.isHidden = true
-            infoLabel.isHidden = false
-            tableView.reloadData()
+        } else {
+            activityIndicator.stopAnimating()
+            if viewModel.favoriteAPODs.isEmpty {
+                tableView.isHidden = true
+                infoLabel.isHidden = false
+            } else {
+                tableView.isHidden = false
+                infoLabel.isHidden = true
+            }
         }
     }
 }
 
 extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return apods.count
-    }
+    func numberOfSections(in tableView: UITableView) -> Int { 1 }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        viewModel.favoriteAPODs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: APODTableViewCell.reuseIdentifier, for: indexPath) as? APODTableViewCell else {
-            return UITableViewCell()
-        }
-        let apod = apods[indexPath.section]
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: APODTableViewCell.reuseIdentifier,
+            for: indexPath
+        ) as! APODTableViewCell
+        let apod = viewModel.favoriteAPODs[indexPath.row]
         cell.configure(with: apod)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let apod = apods[indexPath.section]
+        let apod = viewModel.favoriteAPODs[indexPath.row]
         viewModel.didSelect(apod: apod)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            viewModel.removeFavorite(at: indexPath.section)
+            viewModel.removeFavorite(at: indexPath.row)
         }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 4
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return UIView()
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
     }
 }

@@ -3,7 +3,6 @@
 //  NASA-APOD
 //
 //  Created by Felipe Almeida on 18/09/25.
-//
 
 import UIKit
 
@@ -33,42 +32,58 @@ class AppCoordinator: Coordinator {
             tabBarController = UITabBarController()
             
             let apodListNavigationController = UINavigationController()
-            
-            let apodListTabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "house.fill"), tag: 0)
-            apodListTabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+            let apodListTabBarItem = UITabBarItem(
+                title: "title.start".localized,
+                image: UIImage(systemName: "house"),
+                selectedImage: UIImage(systemName: "house.fill")
+            )
             apodListNavigationController.tabBarItem = apodListTabBarItem
-            
             let apodListCoordinator = APODListCoordinator(navigationController: apodListNavigationController)
             
             let favoritesNavigationController = UINavigationController()
-            
-            let favoritesTabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "star.fill"), tag: 1)
-            favoritesTabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+            let favoritesTitle = "title.favorites".localized
+            let favoritesTabBarItem = UITabBarItem(
+                title: favoritesTitle,
+                image: UIImage(systemName: "star"),
+                selectedImage: UIImage(systemName: "star.fill")
+            )
             favoritesNavigationController.tabBarItem = favoritesTabBarItem
-            
             let favoritesCoordinator = FavoritesCoordinator(navigationController: favoritesNavigationController)
 
-            
             childCoordinators = [apodListCoordinator, favoritesCoordinator]
-            
             apodListCoordinator.start()
             favoritesCoordinator.start()
             
-            tabBarController.viewControllers = [apodListNavigationController, favoritesNavigationController]
-            
+            tabBarController.viewControllers = [
+                apodListNavigationController,
+                favoritesNavigationController
+            ]
+
             let appearance = UITabBarAppearance()
             appearance.configureWithOpaqueBackground()
             appearance.backgroundColor = ColorManager.primaryBackground
             appearance.stackedLayoutAppearance.normal.iconColor = ColorManager.secondaryText
-            appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: ColorManager.secondaryText]
+            appearance.stackedLayoutAppearance.normal.titleTextAttributes = [
+                .foregroundColor: ColorManager.secondaryText
+            ]
+            
             appearance.stackedLayoutAppearance.selected.iconColor = ColorManager.primaryAccent
-            appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: ColorManager.primaryAccent]
+            appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
+                .foregroundColor: ColorManager.primaryAccent
+            ]
+            
             tabBarController.tabBar.standardAppearance = appearance
             tabBarController.tabBar.scrollEdgeAppearance = appearance
         }
         
-        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
-            self.window.rootViewController = self.tabBarController
-        }, completion: nil)
+        UIView.transition(
+            with: window,
+            duration: 0.5,
+            options: .transitionCrossDissolve,
+            animations: {
+                self.window.rootViewController = self.tabBarController
+            },
+            completion: nil
+        )
     }
 }
