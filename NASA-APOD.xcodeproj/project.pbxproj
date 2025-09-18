@@ -10,8 +10,19 @@
 		20C55B522E7B958F00C9C20A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 20C55B512E7B958F00C9C20A /* Kingfisher */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		20C55BC72E7C972000C9C20A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20C55B302E7B929000C9C20A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 20C55B372E7B929000C9C20A;
+			remoteInfo = "NASA-APOD";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		20C55B382E7B929000C9C20A /* NASA-APOD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NASA-APOD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		20C55BC32E7C972000C9C20A /* NASA-APODTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NASA-APODTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -33,6 +44,11 @@
 			path = "NASA-APOD";
 			sourceTree = "<group>";
 		};
+		20C55BC42E7C972000C9C20A /* NASA-APODTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "NASA-APODTests";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +60,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		20C55BC02E7C972000C9C20A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -51,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				20C55B3A2E7B929000C9C20A /* NASA-APOD */,
+				20C55BC42E7C972000C9C20A /* NASA-APODTests */,
 				20C55B392E7B929000C9C20A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				20C55B382E7B929000C9C20A /* NASA-APOD.app */,
+				20C55BC32E7C972000C9C20A /* NASA-APODTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,6 +114,29 @@
 			productReference = 20C55B382E7B929000C9C20A /* NASA-APOD.app */;
 			productType = "com.apple.product-type.application";
 		};
+		20C55BC22E7C972000C9C20A /* NASA-APODTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20C55BC92E7C972000C9C20A /* Build configuration list for PBXNativeTarget "NASA-APODTests" */;
+			buildPhases = (
+				20C55BBF2E7C972000C9C20A /* Sources */,
+				20C55BC02E7C972000C9C20A /* Frameworks */,
+				20C55BC12E7C972000C9C20A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				20C55BC82E7C972000C9C20A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				20C55BC42E7C972000C9C20A /* NASA-APODTests */,
+			);
+			name = "NASA-APODTests";
+			packageProductDependencies = (
+			);
+			productName = "NASA-APODTests";
+			productReference = 20C55BC32E7C972000C9C20A /* NASA-APODTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -101,6 +149,10 @@
 				TargetAttributes = {
 					20C55B372E7B929000C9C20A = {
 						CreatedOnToolsVersion = 16.3;
+					};
+					20C55BC22E7C972000C9C20A = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 20C55B372E7B929000C9C20A;
 					};
 				};
 			};
@@ -122,12 +174,20 @@
 			projectRoot = "";
 			targets = (
 				20C55B372E7B929000C9C20A /* NASA-APOD */,
+				20C55BC22E7C972000C9C20A /* NASA-APODTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		20C55B362E7B929000C9C20A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20C55BC12E7C972000C9C20A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -144,11 +204,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		20C55BBF2E7C972000C9C20A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		20C55BC82E7C972000C9C20A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 20C55B372E7B929000C9C20A /* NASA-APOD */;
+			targetProxy = 20C55BC72E7C972000C9C20A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		20C55B4C2E7B929100C9C20A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 20C55B3A2E7B929000C9C20A /* NASA-APOD */;
+			baseConfigurationReferenceRelativePath = Keys.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -176,6 +253,8 @@
 		};
 		20C55B4D2E7B929100C9C20A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 20C55B3A2E7B929000C9C20A /* NASA-APOD */;
+			baseConfigurationReferenceRelativePath = Keys.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -203,6 +282,8 @@
 		};
 		20C55B4E2E7B929100C9C20A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 20C55B3A2E7B929000C9C20A /* NASA-APOD */;
+			baseConfigurationReferenceRelativePath = Keys.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -267,6 +348,8 @@
 		};
 		20C55B4F2E7B929100C9C20A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 20C55B3A2E7B929000C9C20A /* NASA-APOD */;
+			baseConfigurationReferenceRelativePath = Keys.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -322,6 +405,42 @@
 			};
 			name = Release;
 		};
+		20C55BCA2E7C972000C9C20A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6265G356YS;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "faefelipedev.NASA-APODTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NASA-APOD.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NASA-APOD";
+			};
+			name = Debug;
+		};
+		20C55BCB2E7C972000C9C20A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6265G356YS;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "faefelipedev.NASA-APODTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NASA-APOD.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NASA-APOD";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -339,6 +458,15 @@
 			buildConfigurations = (
 				20C55B4C2E7B929100C9C20A /* Debug */,
 				20C55B4D2E7B929100C9C20A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		20C55BC92E7C972000C9C20A /* Build configuration list for PBXNativeTarget "NASA-APODTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20C55BCA2E7C972000C9C20A /* Debug */,
+				20C55BCB2E7C972000C9C20A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
