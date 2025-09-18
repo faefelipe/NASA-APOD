@@ -11,30 +11,12 @@ import Combine
 @MainActor
 class FavoritesViewModel {
     
-    enum State: Equatable {
-        case loading
-        case success([APOD])
-        case empty
-        
-        static func == (lhs: FavoritesViewModel.State, rhs: FavoritesViewModel.State) -> Bool {
-            switch (lhs, rhs) {
-            case (.loading, .loading):
-                return true
-            case (.success(let a), .success(let b)):
-                return a == b
-            case (.empty, .empty):
-                return true
-            default:
-                return false
-            }
-        }
-    }
-    
     private let apiService = APIService()
     private let favoritesManager = FavoritesManager.shared
     private var cancellables = Set<AnyCancellable>()
     
-    @Published var state: State = .loading
+    @Published private(set) var favoriteAPODs: [APOD] = []
+    @Published private(set) var isLoading = false
     
     var onSelectAPOD: ((APOD) -> Void)?
     
@@ -47,33 +29,30 @@ class FavoritesViewModel {
     }
 
     func fetchFavoriteAPODs() {
-        self.state = .loading
+        isLoading = true
         let dates = favoritesManager.favoriteDates
         
-        if dates.isEmpty {
-            self.state = .empty
+        guard !dates.isEmpty else {
+            favoriteAPODs = []
+            isLoading = false
             return
         }
         
-        Task {
+        Task { @MainActor in
             let results = await fetchAPODsConcurrently(for: dates)
-            
-            if results.isEmpty {
-                self.state = .empty
-            } else {
-                let sortedResults = results.sorted { $0.date > $1.date }
-                self.state = .success(sortedResults)
-            }
+            favoriteAPODs = results.sorted { $0.date > $1.date }
+            isLoading = false
         }
     }
     
     private func fetchAPODsConcurrently(for dates: Set<String>) async -> [APOD] {
-        return await withTaskGroup(of: APOD?.self, returning: [APOD].self) { group in
+        await withTaskGroup(of: APOD?.self, returning: [APOD].self) { group in
             for date in dates {
-                group.addTask {
-                    return try? await self.apiService.fetchAPOD(for: date)
+                group.addTask { [apiService] in
+                    try? await apiService.fetchAPOD(for: date)
                 }
             }
+            
             var apods: [APOD] = []
             for await result in group {
                 if let apod = result {
@@ -84,12 +63,9 @@ class FavoritesViewModel {
         }
     }
     
-    func removeFavorite(at section: Int) {
-        guard case .success(var currentAPODs) = self.state, section < currentAPODs.count else {
-            return
-        }
-        
-        let apodToRemove = currentAPODs[section]
+    func removeFavorite(at index: Int) {
+        guard index < favoriteAPODs.count else { return }
+        let apodToRemove = favoriteAPODs[index]
         favoritesManager.toggleFavorite(date: apodToRemove.date)
     }
     
