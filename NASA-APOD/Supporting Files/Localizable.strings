@@ -1,0 +1,22 @@
+//
+//  Localizable.strings
+//  Reminder
+//
+//  Created by Felipe Almeida on 13/09/25.
+//
+
+/* MARK: - TITLES FLOW */
+"title.start" =  "Start";
+"title.favorites" = "Favorites";
+"title.details" = "Details";
+"title.photos" = "Photos";
+"title.photos.recent" = "Other Recent Photos";
+"title.dont.favorites" =  "You don't have any favorites yet. Browse and star some! ⭐";
+"title.picture.nasa" = "Pictures NASA";
+"title.access.app" = "Access the App";
+"title.unknown.error" = "Unknown error";
+/* MARK: - EXTENSIONS Network */
+"extensions.network.incorrect" = "The API address appears to be incorrect.";
+"extensions.network.failed" = "Failed to connect to the server. Check your internet connection and try again.";
+"extensions.network.serverNotRespond" = "The NASA server did not respond as expected. Please try again later.";
+"extensions.network.dataNotReceived" = "Unable to process data received from server.";
