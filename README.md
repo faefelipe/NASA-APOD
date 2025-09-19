@@ -87,3 +87,9 @@ Splash Screen Animada → fundo de estrelas procedural em Swift.
 Navegação Visual → painéis interativos com miniaturas de cada dia.
 
 Otimização de Performance → cache, downsampling e prefetching de imagens para rolagem fluida.
+![Initial_screen](https://github.com/user-attachments/assets/5f69456f-67f7-4c2b-b77a-fee95ab276ea)
+![Start_Screen](https://github.com/user-attachments/assets/355cbee7-bbab-4b9d-a72b-e806ca9d3efd)
+![List](https://github.com/user-attachments/assets/52305a6e-ba3f-48f7-bf4f-a4dfb5330dd9)
+![Detail-Screen](https://github.com/user-attachments/assets/3b8504a0-096f-4cb2-ad6a-969d72d1f622)
+![Delete-Item-Favorites](https://github.com/user-attachments/assets/7212b91b-ba85-42f8-aaa4-b50ad44c896b)
+
