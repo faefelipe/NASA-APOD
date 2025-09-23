@@ -23,14 +23,8 @@ Ela será enviada para o seu e-mail.
 Para manter a chave de API segura e fora do controle de versão, o projeto utiliza um arquivo .xcconfig.
 
 Na pasta raiz do projeto (mesmo nível do arquivo .xcodeproj), crie um arquivo chamado:
-
-mathematica
-Copiar código
 Keys.xcconfig
 Adicione a seguinte linha, substituindo SUA_CHAVE_AQUI pela chave recebida:
-
-text
-Copiar código
 NASA_API_KEY = SUA_CHAVE_AQUI
 O projeto já está configurado para ler a chave desse arquivo.
 O Keys.xcconfig está no .gitignore para que sua chave não seja enviada ao repositório.
